@@ -1,0 +1,281 @@
+// Provide the data model to store key bind information
+var Keys = {}; // fill with key objects
+Keys.keyboard = []; //contains arrays [rows] of Key objects
+var defaults = defaults = 
+[
+  [
+    {
+      name:'esc',
+      width:1,
+    },{
+      name:'f1',
+      width:1,
+    },{
+      name:'f2',
+      width:1,
+    },{
+      name:'f3',
+      width:1,
+    },{
+      name:'f4',
+      width:1,
+    },{
+      name:'f5',
+      width:1,
+    },{
+      name:'f6',
+      width:1,
+    },{
+      name:'f7',
+      width:1,
+    },{
+      name:'f8',
+      width:1,
+    },{
+      name:'f9',
+      width:1,
+    },{
+      name:'f10',
+      width:1,
+    },{
+      name:'f11',
+      width:1,
+    },{
+      name:'f12',
+      width:1,
+    },
+  ], 
+  [
+    {
+      name:'tilde',
+      width:1,
+    },{
+      name:'1',
+      width:1,
+    },{
+      name:'2',
+      width:1,
+    },{
+      name:'3',
+      width:1,
+    },{
+      name:'4',
+      width:1,
+    },{
+      name:'5',
+      width:1,
+    },{
+      name:'6',
+      width:1,
+    },{
+      name:'7',
+      width:1,
+    },{
+      name:'8',
+      width:1,
+    },{
+      name:'9',
+      width:1,
+    },{
+      name:'0',
+      width:1,
+    },{
+      name:'-',
+      width:1,
+    },{
+      name:'+',
+      width:1,
+    },{
+      name:'backspace',
+      width:1.66,
+    },
+  ],
+  [
+    {
+      name:'tab',
+      width:1.33,
+    },{
+      name:'q',
+      width:1,
+    },{
+      name:'w',
+      width:1,
+    },{
+      name:'e',
+      width:1,
+    },{
+      name:'r',
+      width:1,
+    },{
+      name:'t',
+      width:1,
+    },{
+      name:'y',
+      width:1,
+    },{
+      name:'u',
+      width:1,
+    },{
+      name:'i',
+      width:1,
+    },{
+      name:'o',
+      width:1,
+    },{
+      name:'p',
+      width:1,
+    },{
+      name:'[',
+      width:1,
+    },{
+      name:']',
+      width:1,
+    },{
+      name:'\\',
+      width:1.33,
+    },
+  ],
+  [
+    {
+      name:'caps',
+      width:1.66,
+    },{
+      name:'a',
+      width:1,
+    },{
+      name:'s',
+      width:1,
+    },{
+      name:'d',
+      width:1,
+    },{
+      name:'f',
+      width:1,
+    },{
+      name:'g',
+      width:1,
+    },{
+      name:'h',
+      width:1,
+    },{
+      name:'j',
+      width:1,
+    },{
+      name:'k',
+      width:1,
+    },{
+      name:'l',
+      width:1,
+    },{
+      name:';',
+      width:1,
+    },{
+      name:'\"',
+      width:1,
+    },{
+      name:'enter',
+      width:2,
+    },
+  ],
+  [
+    {
+      name:'lshift',
+      width:2,
+    },{
+      name:'z',
+      width:1,
+    },{
+      name:'x',
+      width:1,
+    },{
+      name:'c',
+      width:1,
+    },{
+      name:'v',
+      width:1,
+    },{
+      name:'b',
+      width:1,
+    },{
+      name:'n',
+      width:1,
+    },{
+      name:'m',
+      width:1,
+    },{
+      name:',',
+      width:1,
+    },{
+      name:'.',
+      width:1,
+    },{
+      name:'/',
+      width:1,
+    },{
+      name:'rshift',
+      width:2.66,
+    },
+  ],
+  [
+    {
+      name:'lctrl',
+      width:1,
+    },{
+      name:'lwin',
+      width:1,
+    },{
+      name:'lalt',
+      width:1,
+    },{
+      name:'',
+      width:1,
+    },{
+      name:'space',
+      width:5.66,
+    },{
+      name:'',
+      width:2,
+    },{
+      name:'ralt',
+      width:1,
+    },{
+      name:'rwin',
+      width:1,
+    },{
+      name:'rctrl',
+      width:1,
+    },
+  ],
+];
+
+  
+Keys.Key = function(){
+  var tmp = {};
+  tmp.name = "";
+  tmp.width = null;
+  tmp.label = "";
+  tmp.description = "";
+  tmp.color = "";
+//  tmp.alert = function(){alert('Hi')};
+  return tmp;
+};
+
+
+Keys.init = function(state){
+  if(state != null && state != undefined && state[0][0].width){ //state exists
+    Keys.keyboard = state;
+    return;
+  };
+  defaults.forEach(function(row){
+    var row2 = [];
+    row.forEach(function(key){
+      var tmp = new Keys.Key();
+      tmp.name = key.name;
+      tmp.width = key.width;
+      row2.push(tmp);
+    });
+    Keys.keyboard.push(row2);
+  });
+  //console.log(JSON.stringify(Keys.keyboard,null,2));
+};
+

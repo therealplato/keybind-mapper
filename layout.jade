@@ -1,0 +1,65 @@
+!!!
+html
+  head
+    block head
+      script(type='text/javascript', src='/d3.v2.js')
+      script(type='text/javascript', src='/Keys.js')
+      script(type='text/javascript', src='/bindmap.js')
+      style
+        body {position:relative;}
+        .keylabel {
+            font:  12px monospace;
+        }
+        .keyname {
+            font: 16px sans-serif;
+        }
+        #keyboard {background-color:#DDDDDD}
+        #edit {display:block; width: 30em; height:11em; padding: 1em 1em 1em 1em;
+                position:fixed; bottom:0; left:0; background-color:#FFAA99;
+              }
+        #editPalette {position:absolute; right:-7em;border:2px solid black}
+        #editLeft {display:inline; width:50%;float:left}
+        #editRight {display:inline; width:50%;float:right}
+        label {text-align:right; display:block; height: 2em;
+               margin: 4px 1em 4px 0; padding: 0 0 0 0;
+              }
+        input {text-align:left; display:block; height: 2em;
+               margin: 3px 0 3px 1em; padding: 0 0 0 0; border: 1px solid black;
+              }
+        .palette {display:block; padding: 3px 0 0 0; width: 7em;
+          font:12px monospace;
+        }
+        .red {background-color:#FF5555}
+        .yellow {background-color:#FFDD99}
+        .green {background-color:#99FF99}
+        .teal {background-color:#00DDAA}
+        .blue {background-color:#88AAFF}
+        .grey {background-color:#888888}
+        .white {background-color:#FFFFFF}
+  body
+    block content
+      #keyboard
+      #edit
+        #editLeft
+          label(value='Key Name', for='editName') Key Name
+          label(value='Short Label', for='editLabel') Short Label
+          label(value='Description', for='editDescription') Description
+          label(value='Color (#AABBCC)', for='editColor') Color (#AABBCC)
+        #editRight
+          input(type='text', id='editName', readonly='readonly')
+          input(type='text', id='editLabel')
+          input(type='text', id='editDescription')
+          input(type='text', id='editColor')
+          input(type='button', id='editSubmit', value='Save')
+        #editPalette
+          li(class='palette red') #FF5555
+          li(class='palette yellow') #FFDD99
+          li(class='palette green') #99FF99
+          li(class='palette teal') #00DDAA
+          li(class='palette blue') #88AAFF
+          li(class='palette grey') #888888
+          li(class='palette white') #FFFFFF
+      div
+        form(id='saveForm', action='/savemap', method='post')
+          input(type='hidden', id='state', name='state')
+          input(type='button', id='saveMap', value='Save Keyboard Mapping')
